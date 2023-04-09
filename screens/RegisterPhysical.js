@@ -1,7 +1,6 @@
 import s from '../styles/SignUpStyles';
 import { useState } from 'react';
-import { Alert } from "react-native";
-import { Text, View, ScrollView, TextInput, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Text, View, ScrollView, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 import { Menu, MenuDivider, MenuItem } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';

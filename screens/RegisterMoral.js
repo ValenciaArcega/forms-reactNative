@@ -1,7 +1,7 @@
-import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView } from "react-native";
-import { useState } from "react";
-import { Menu, MenuDivider, MenuItem } from "react-native-material-menu";
 import s from '../styles/SignUpStyles';
+import { useState } from "react";
+import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView } from "react-native";
+import { Menu, MenuDivider, MenuItem } from "react-native-material-menu";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 

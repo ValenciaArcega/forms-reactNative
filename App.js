@@ -1,31 +1,21 @@
 import Home from "./screens/Home";
-
+import RegisterMoral from "./screens/RegisterMoral";
+import RegisterPhysical from "./screens/RegisterPhysical";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+
+const Stack = createNativeStackNavigator();
 
 export default App = () => {
   return (
     <NavigationContainer>
-      <Home />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false, animation: "fade_from_bottom", orientation: 'landscape' }}></Stack.Screen>
+
+        <Stack.Screen name="RegisterMoral" component={RegisterMoral} options={{ headerShown: false, animation: "slide_from_bottom", orientation: 'landscape' }}></Stack.Screen>
+
+        <Stack.Screen name="RegisterPhysical" component={RegisterPhysical} options={{ headerShown: false, animation: "slide_from_bottom", orientation: 'landscape' }}></Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
-}
-
-/*
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-Icon.loadFont(); 
-
-<Icon name="rocket" size={24} color="#fff" />
-*/
-
-
-/*
-import { LinearGradient } from 'expo-linear-gradient';
-
-<LinearGradient
-  colors={['#c0392b', '#f1c40f', '#8e44ad']}
-  start={{x: 0, y: 0.5}}
-  end={{x: 1, y: 1}}
-  style={styles.some}>
-</LinearGradient>
-*/
+};
