@@ -18,6 +18,19 @@ const s = StyleSheet.create({
     backgroundColor: '#fff',
     alignSelf: "center",
   },
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ButtonBackHome: {
+    marginHorizontal: 8,
+    marginVertical: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    gap: -5
+  },
+  ButtonBackHomeText: {
+    fontSize: 18,
+    fontWeight: 500
+  },
   homeFormImage: {
     height: 144,
     width: 144,
@@ -78,7 +91,7 @@ const s = StyleSheet.create({
     height: 48,
     width: "80%",
     marginTop: 24,
-    borderRadius: 12,
+    borderRadius: 10,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

@@ -1,21 +1,33 @@
-import s from "../src/styles/SignUpStyles";
 import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView } from "react-native";
 import { useState } from "react";
 import { Menu, MenuDivider, MenuItem } from "react-native-material-menu";
+import s from '../styles/SignUpStyles';
+import { useNavigation } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+Icon.loadFont();
 
 const RegisterMoral = () => {
+
   const [currentEntity, setCurrentEntity] = useState('Elegir municipio');
   const [visible, setVisible] = useState(false);
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
+
+  const navigation = useNavigation();
+  const goHome = () => navigation.replace('Home');
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <ScrollView style={s.screenHome}>
         <View style={s.homeForm}>
 
-          <Image style={s.homeFormImage} source={require('../assets/signUp.png')} />
+          <TouchableOpacity onPress={goHome} style={s.ButtonBackHome}>
+            <Icon name="chevron-left" size={32} color='#6C63FF' />
+            <Text style={s.ButtonBackHomeText}>Regresar</Text>
+          </TouchableOpacity>
 
+          <Image style={s.homeFormImage} source={require('../assets/signUp.png')} />
 
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Datos</Text>

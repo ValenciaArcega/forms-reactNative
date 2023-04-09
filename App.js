@@ -1,4 +1,5 @@
 import Home from "./screens/Home";
+
 import { NavigationContainer } from "@react-navigation/native";
 
 export default App = () => {
@@ -10,7 +11,7 @@ export default App = () => {
 }
 
 /*
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 Icon.loadFont(); 
 

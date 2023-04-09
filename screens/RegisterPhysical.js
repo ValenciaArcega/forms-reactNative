@@ -1,10 +1,17 @@
-import s from "../src/styles/SignUpStyles";
+import s from '../styles/SignUpStyles';
 import { useState } from 'react';
 import { Alert } from "react-native";
 import { Text, View, ScrollView, TextInput, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { Menu, MenuDivider, MenuItem } from 'react-native-material-menu';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+
+Icon.loadFont();
 
 const RegisterPhysical = () => {
+
+  const navigation = useNavigation();
+  const goHome = () => navigation.replace('Home');
 
   const [currentEntity, setCurrentEntity] = useState('Elegir municipio');
   const [visible, setVisible] = useState(false);
@@ -15,6 +22,11 @@ const RegisterPhysical = () => {
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <ScrollView style={s.screenHome}>
         <View style={s.homeForm}>
+
+          <TouchableOpacity onPress={goHome} style={s.ButtonBackHome}>
+            <Icon name="chevron-left" size={32} color="#6C63FF" />
+            <Text style={s.ButtonBackHomeText}>Regresar</Text>
+          </TouchableOpacity>
 
           <Image style={s.homeFormImage} source={require('../assets/signIn.png')} />
 
