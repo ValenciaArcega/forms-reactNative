@@ -1,7 +1,8 @@
 import s from '../styles/SignUpStyles';
+import entities from '../data/Entities';
 import { useState } from "react";
-import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView } from "react-native";
-import { Menu, MenuDivider, MenuItem } from "react-native-material-menu";
+import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView, Alert } from "react-native";
+import { Menu, MenuItem } from "react-native-material-menu";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -43,22 +44,22 @@ const RegisterMoral = () => {
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Dirección fiscal</Text>
             <Text style={s.formContainerText}>Calle</Text>
-            <TextInput style={s.formContainerInput}></TextInput>
+            <TextInput style={s.formContainerInput} placeholder="Avenida o calle principal"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Colonia</Text>
-            <TextInput style={s.formContainerInput}></TextInput>
+            <TextInput style={s.formContainerInput} placeholder="Ingresa tu colonia"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Número interno/externo</Text>
-            <TextInput style={s.formContainerInput}></TextInput>
+            <TextInput style={s.formContainerInput} placeholder="Ej. Lote 2 Edificio B-8"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Código postal</Text>
-            <TextInput style={s.formContainerInput}></TextInput>
+            <TextInput style={s.formContainerInput} placeholder="Código de zona"></TextInput>
           </View>
 
           <View style={s.formContainer}>
@@ -72,44 +73,12 @@ const RegisterMoral = () => {
                 onRequestClose={hideMenu}
               >
                 <ScrollView>
-                  <MenuDivider />
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Ecatepec de Morelos'); }}>Ecatepec de Morelos</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Nezahualcóyotl'); }}>Nezahualcóyotl</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Toluca'); }}>Toluca</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Naucalpan de Juárez'); }}>Naucalpan de Juárez</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Chimalhuacán'); }}>Chimalhuacán</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tlalnepantla de Baz'); }}>Tlalnepantla de Baz</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Cuautitlán Izcalli'); }}>Cuautitlán Izcalli</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tecámac'); }}>Tecámac</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Ixtapaluca'); }}>Ixtapaluca</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Atizapán de Zaragoza'); }}>Atizapán de Zaragoza</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tultitlán'); }}>Tultitlán</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Nicolás Romero'); }}>Nicolás Romero</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Chalco'); }}>Chalco</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('La Paz'); }}>La Paz</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Coacalco de Berriozábal'); }}>Coacalco de Berriozábal</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Huixquilucan'); }}>Huixquilucan</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Zumpango'); }}>Zumpango</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Texcoco'); }}>Texcoco</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Metepec'); }}>Metepec</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Zinacantepec'); }}>Zinacantepec</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Chicoloapan'); }}>Chicoloapan</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Cuautitlán'); }}>Cuautitlán</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Almoloya de Juárez'); }}>Almoloya de Juárez</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Acolman'); }}>Acolman</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Lerma'); }}>Lerma</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Huehuetoca'); }}>Huehuetoca</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Ixtlahuaca'); }}>Ixtlahuaca</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tultepec'); }}>Tultepec</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('San Felipe del Progreso'); }}>San Felipe del Progreso</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Atlacomulco'); }}>Atlacomulco</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Villa Victoria'); }}>Villa Victoria</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Temoaya'); }}>Temoaya</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tenancingo'); }}>Tenancingo</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tepotzotlán'); }}>Tepotzotlán</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('San José del Rincón'); }}>San José del Rincón</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Tenango del Valle'); }}>Tenango del Valle</MenuItem>
-                  <MenuItem onPress={() => { hideMenu(); setCurrentEntity('Otzolotepec'); }}>Otzolotepec</MenuItem>
+                  {/* <MenuDivider color="#e8e8e8"/> */}
+                  {entities.map((el) => {
+                    return (
+                      <MenuItem onPress={() => { hideMenu(); setCurrentEntity(el); }}>{el}</MenuItem>
+                    );
+                  })}
                 </ScrollView>
               </Menu>
             </View>
@@ -117,10 +86,10 @@ const RegisterMoral = () => {
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Teléfono</Text>
-            <TextInput style={s.formContainerInput}></TextInput>
+            <TextInput style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
           </View>
 
-          <TouchableOpacity onPress={() => { }} style={s.btnRegisterPhysic}>
+          <TouchableOpacity onPress={() => Alert.alert(currentEntity)} style={s.btnRegisterPhysic}>
             <Text style={s.btnRegisterPhysicText}>Registrar</Text>
           </TouchableOpacity>
         </View>

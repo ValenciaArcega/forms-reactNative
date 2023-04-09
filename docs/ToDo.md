@@ -1,0 +1,2 @@
+- Implement firebase
+- Register click with firebase

@@ -1,4 +1,5 @@
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
+import s from '../styles/HomeStyles';
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -11,7 +12,7 @@ const Home = function () {
   return (
     <ScrollView>
       <View style={s.containerHome}>
-        <Text style={s.containerHomeText}>¿Que tipo de registro va a realizar?</Text>
+        <Text style={s.containerHomeText}>Control de usuarios</Text>
 
         <TouchableOpacity onPress={goRegisterPhysical} style={s.btnsRegister}>
           <LinearGradient
@@ -36,44 +37,5 @@ const Home = function () {
     </ScrollView>
   );
 };
-
-const s = StyleSheet.create({
-  containerHome: {
-    width: "90%",
-    marginTop: 124,
-    paddingBottom: 64,
-    alignSelf: "center",
-    alignItems: "center",
-  },
-  containerHomeText: {
-    fontSize: 36,
-    textAlign: "center",
-    fontWeight: "800"
-  },
-  btnsRegister: {
-    height: 52,
-    width: "90%",
-    marginTop: 32,
-    shadowColor: '#6C63FF',
-    shadowOpacity: .5,
-    shadowRadius: 7,
-    shadowOffset: {
-      width: 8,
-      height: 8
-    }
-  },
-  btnsRegisterGradient: {
-    height: '100%',
-    width: '100%',
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btnsRegisterText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500"
-  }
-});
 
 export default Home;

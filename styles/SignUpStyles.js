@@ -59,6 +59,14 @@ const s = StyleSheet.create({
   },
   entitiesPhysic: {
     height: 232,
+    borderRadius: 12,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 5,
+      height: 5
+    },
+    shadowRadius: 8,
+    shadowOpacity: 0.4
   },
   entitiesPhysicItem: {
     color: "blue"
@@ -101,7 +109,7 @@ const s = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "500"
-  }
+  },
 });
 
 export default s;
