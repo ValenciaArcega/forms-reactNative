@@ -9,14 +9,25 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 Icon.loadFont();
 
 const RegisterMoral = () => {
-
+  // variables
   const [currentEntity, setCurrentEntity] = useState('Elegir municipio');
   const [visible, setVisible] = useState(false);
+  const [userMoral, setUserMoral] = useState({
+    rfc: '',
+    razonSocial: '',
+    calle: '',
+    colonia: '',
+    numExt: '',
+    codigoPostal: '',
+    municipio: '',
+    telefono: ''
+  });
+  const navigation = useNavigation();
+  // functions
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
-
-  const navigation = useNavigation();
   const goHome = () => navigation.replace('Home');
+  const handleChangeText = (n, value) => setUserMoral({ ...userMoral, [n]: value });
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -33,33 +44,33 @@ const RegisterMoral = () => {
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Datos</Text>
             <Text style={s.formContainerText}>RFC</Text>
-            <TextInput style={s.formContainerInput} placeholder="Clave de 12 digitos"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("rfc", v)} style={s.formContainerInput} placeholder="Clave de 12 digitos"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Razon Social</Text>
-            <TextInput style={s.formContainerInput} placeholder="S.A. de C.V..."></TextInput>
+            <TextInput onChangeText={v => handleChangeText("razonSocial", v)} style={s.formContainerInput} placeholder="S.A. de C.V..."></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Dirección fiscal</Text>
             <Text style={s.formContainerText}>Calle</Text>
-            <TextInput style={s.formContainerInput} placeholder="Avenida o calle principal"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("calle", v)} style={s.formContainerInput} placeholder="Avenida o calle principal"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Colonia</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa tu colonia"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("colonia", v)} style={s.formContainerInput} placeholder="Ingresa tu colonia"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Número interno/externo</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ej. Lote 2 Edificio B-8"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("numExt", v)} style={s.formContainerInput} placeholder="Ej. Lote 2 Edificio B-8"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Código postal</Text>
-            <TextInput style={s.formContainerInput} placeholder="Código de zona"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("codigoPostal", v)} style={s.formContainerInput} placeholder="Código de zona"></TextInput>
           </View>
 
           <View style={s.formContainer}>
@@ -74,9 +85,13 @@ const RegisterMoral = () => {
               >
                 <ScrollView>
                   {/* <MenuDivider color="#e8e8e8"/> */}
-                  {entities.map((el) => {
+                  {entities.map((el, i) => {
                     return (
-                      <MenuItem onPress={() => { hideMenu(); setCurrentEntity(el); }}>{el}</MenuItem>
+                      <MenuItem key={i} onPress={() => {
+                        userMoral.municipio = el;
+                        hideMenu();
+                        setCurrentEntity(el);
+                      }}>{el}</MenuItem>
                     );
                   })}
                 </ScrollView>
@@ -86,10 +101,13 @@ const RegisterMoral = () => {
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Teléfono</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("telefono", v)} style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
           </View>
 
-          <TouchableOpacity onPress={() => Alert.alert(currentEntity)} style={s.btnRegisterPhysic}>
+          <TouchableOpacity onPress={() => {
+            console.log(userMoral);
+            Alert.alert('Datos registrados ✅');
+          }} style={s.btnRegisterPhysic}>
             <Text style={s.btnRegisterPhysicText}>Registrar</Text>
           </TouchableOpacity>
         </View>

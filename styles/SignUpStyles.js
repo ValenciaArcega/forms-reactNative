@@ -36,18 +36,17 @@ const s = StyleSheet.create({
     width: 144,
   },
   homeFormTitles: {
-    marginTop: 18,
+    marginTop: 16,
     marginBottom: 12,
     fontSize: 20,
     fontWeight: "700",
-    letterSpacing: -1,
+    letterSpacing: -0.5,
     color: "gray",
     alignSelf: "flex-start"
   },
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   municipio: {
     width: "80%",
-    backgroundColor: "red"
   },
   containerEntityPhysic: {
     marginTop: 4,
@@ -62,16 +61,12 @@ const s = StyleSheet.create({
     borderRadius: 12,
     shadowColor: 'black',
     shadowOffset: {
-      width: 5,
-      height: 5
+      width: 8,
+      height: 8
     },
-    shadowRadius: 8,
-    shadowOpacity: 0.4
+    shadowRadius: 10,
+    shadowOpacity: 0.3
   },
-  entitiesPhysicItem: {
-    color: "blue"
-  },
-
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   formContainer: {
     marginTop: 16,
@@ -87,7 +82,7 @@ const s = StyleSheet.create({
     marginTop: 4,
     paddingLeft: 12,
     fontSize: 18,
-    fontWeight: "500",
+    fontWeight: "400",
     letterSpacing: 0,
     borderWidth: 0,
 

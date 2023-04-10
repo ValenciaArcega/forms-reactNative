@@ -2,7 +2,7 @@
 - RFC
 - Nombre
 - Apellidos
-- Dirección
+Dirección
 - Calle
 - Colonia
 - Numero
@@ -13,7 +13,7 @@
 # Persona moral
 - RFC 
 - Razon Social
-- Direccion Fiscal
+Direccion Fiscal
 - Calle
 - Colonia
 - Número

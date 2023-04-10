@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const s = StyleSheet.create({
   containerHome: {
     width: "90%",
-    marginTop: 124,
+    marginTop: 152,
     paddingBottom: 64,
     alignSelf: "center",
     alignItems: "center",
@@ -18,12 +18,14 @@ const s = StyleSheet.create({
     height: 52,
     width: "90%",
     marginTop: 32,
+    borderRadius: 14,
+    backgroundColor: '#fff',
     shadowColor: '#6C63FF',
-    shadowOpacity: .5,
+    shadowOpacity: .3,
     shadowRadius: 7,
     shadowOffset: {
       width: 8,
-      height: 8
+      height: 10
     }
   },
   btnsRegisterGradient: {

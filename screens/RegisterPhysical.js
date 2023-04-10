@@ -2,21 +2,34 @@ import s from '../styles/SignUpStyles';
 import entities from '../data/Entities';
 import { useState } from 'react';
 import { Text, View, ScrollView, TextInput, Image, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
-import { Menu, MenuDivider, MenuItem } from 'react-native-material-menu';
+import { Menu, MenuItem } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 
 Icon.loadFont();
 
 const RegisterPhysical = () => {
-
-  const navigation = useNavigation();
-  const goHome = () => navigation.replace('Home');
-
+  // variables
   const [currentEntity, setCurrentEntity] = useState('Elegir municipio');
   const [visible, setVisible] = useState(false);
+  const navigation = useNavigation();
+  const [userPhysical, setUserPhysical] = useState({
+    rfc: '',
+    nombre: '',
+    apellidos: '',
+    calle: '',
+    colonia: '',
+    numeroExt: '',
+    municipio: '',
+    codigoPostal: '',
+    telefono: '',
+  });
+  // functions
+  const goHome = () => navigation.replace('Home');
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
+  const handleChangeText = (n, value) => setUserPhysical({ ...userPhysical, [n]: value });
+  const printDataCatched = () => console.log(userPhysical);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -33,34 +46,34 @@ const RegisterPhysical = () => {
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Datos personales</Text>
             <Text style={s.formContainerText}>RFC</Text>
-            <TextInput style={s.formContainerInput} placeholder="Clave de 12 digitos"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("rfc", v)} style={s.formContainerInput} placeholder="Clave de 12 digitos"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Nombre</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa tu/s nombre/s"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("nombre", v)} style={s.formContainerInput} placeholder="Ingresa tu/s nombre/s"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Apellidos</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa tus apellidos"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("apellidos", v)} style={s.formContainerInput} placeholder="Ingresa tus apellidos"></TextInput>
           </View>
 
 
           <View style={s.formContainer}>
             <Text style={s.homeFormTitles}>Datos de dirección</Text>
             <Text style={s.formContainerText}>Calle</Text>
-            <TextInput style={s.formContainerInput} placeholder="Avenida o calle principal"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("calle", v)} style={s.formContainerInput} placeholder="Avenida o calle principal"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Colonia</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa tu colonia"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("colonia", v)} style={s.formContainerInput} placeholder="Ingresa tu colonia"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Número interno/externo</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ej. Mz 4 Departamento 19"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("numeroExt", v)} style={s.formContainerInput} placeholder="Ej. Mz 4 Departamento 19"></TextInput>
           </View>
 
           <View style={s.formContainer}>
@@ -75,9 +88,13 @@ const RegisterPhysical = () => {
               >
                 <ScrollView>
                   {/* <MenuDivider /> */}
-                  {entities.map((el) => {
+                  {entities.map((el, i) => {
                     return (
-                      <MenuItem onPress={() => { hideMenu(); setCurrentEntity(el); }}>{el}</MenuItem>
+                      <MenuItem key={i} onPress={() => {
+                        userPhysical.municipio = el;
+                        hideMenu();
+                        setCurrentEntity(el);
+                      }}>{el}</MenuItem>
                     );
                   })}
                 </ScrollView>
@@ -87,15 +104,18 @@ const RegisterPhysical = () => {
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Código postal</Text>
-            <TextInput style={s.formContainerInput} placeholder="Código de zona"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("codigoPostal", v)} style={s.formContainerInput} placeholder="Código de zona"></TextInput>
           </View>
 
           <View style={s.formContainer}>
             <Text style={s.formContainerText}>Teléfono</Text>
-            <TextInput style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
+            <TextInput onChangeText={v => handleChangeText("telefono", v)} style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
           </View>
 
-          <TouchableOpacity onPress={() => { Alert.alert(currentEntity); }} style={s.btnRegisterPhysic}>
+          <TouchableOpacity onPress={() => {            // Alert.alert(userPhysical.rfc);
+            Alert.alert('Datos registrados ✅');
+            printDataCatched();
+          }} style={s.btnRegisterPhysic}>
             <Text style={s.btnRegisterPhysicText}>Registrarme</Text>
           </TouchableOpacity>
         </View>
