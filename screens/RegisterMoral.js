@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 Icon.loadFont();
 
 const RegisterMoral = () => {
+  ////////////////////////////////////////////////////////////////
   // variables
   const [currentEntity, setCurrentEntity] = useState('Elegir municipio');
   const [visible, setVisible] = useState(false);
@@ -25,6 +26,7 @@ const RegisterMoral = () => {
     telefono: ''
   });
   const navigation = useNavigation();
+  ////////////////////////////////////////////////////////////////
   // functions
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
@@ -32,13 +34,13 @@ const RegisterMoral = () => {
   const handleChangeText = (n, value) => setUserMoral({ ...userMoral, [n]: value });
   const registerUser = async () => {
     try {
-      const docRef = await addDoc(collection(db, "users"), userMoral);
+      const docRef = await addDoc(collection(db, "userMoral"), userMoral);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
-
+  ////////////////////////////////////////////////////////////////
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <ScrollView style={s.screenHome}>

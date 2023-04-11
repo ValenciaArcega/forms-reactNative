@@ -1,4 +1,4 @@
-# Welcome
+# Welcome lil explorer
 
 ### How to use ?
 
@@ -25,3 +25,6 @@ npm start
 ```
 
 When the QR code had been showed, just tap the key ``` w ``` to open a browser instance, or scan the QR on your **Expo Go** application on Android or iOS
+
+❗ Donot forget create your own firebase file, database and collections. 😃  
+To see how you can check the **expo firebase** documentation

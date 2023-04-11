@@ -5,6 +5,8 @@ import { Text, View, ScrollView, TextInput, Image, TouchableOpacity, KeyboardAvo
 import { Menu, MenuItem } from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import { db } from "../database/credentials";
+import { collection, addDoc } from 'firebase/firestore';
 
 Icon.loadFont();
 
@@ -29,7 +31,14 @@ const RegisterPhysical = () => {
   const hideMenu = () => setVisible(false);
   const showMenu = () => setVisible(true);
   const handleChangeText = (n, value) => setUserPhysical({ ...userPhysical, [n]: value });
-  const printDataCatched = () => console.log(userPhysical);
+  const registerUser = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "userPhysical"), userPhysical);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -112,9 +121,9 @@ const RegisterPhysical = () => {
             <TextInput onChangeText={v => handleChangeText("telefono", v)} style={s.formContainerInput} placeholder="Ingresa el número celular"></TextInput>
           </View>
 
-          <TouchableOpacity onPress={() => {            // Alert.alert(userPhysical.rfc);
+          <TouchableOpacity onPress={() => {
+            registerUser();
             Alert.alert('Datos registrados ✅');
-            printDataCatched();
           }} style={s.btnRegisterPhysic}>
             <Text style={s.btnRegisterPhysicText}>Registrarme</Text>
           </TouchableOpacity>

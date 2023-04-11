@@ -1,2 +1,1 @@
-- Implement firebase
-- Register click with firebase
+- Add error message below inputs
