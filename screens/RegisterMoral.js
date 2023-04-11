@@ -4,6 +4,8 @@ import { useState } from "react";
 import { TouchableOpacity, Text, View, ScrollView, TextInput, Image, KeyboardAvoidingView, Alert } from "react-native";
 import { Menu, MenuItem } from "react-native-material-menu";
 import { useNavigation } from "@react-navigation/native";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../database/credentials';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 Icon.loadFont();
@@ -28,6 +30,14 @@ const RegisterMoral = () => {
   const showMenu = () => setVisible(true);
   const goHome = () => navigation.replace('Home');
   const handleChangeText = (n, value) => setUserMoral({ ...userMoral, [n]: value });
+  const registerUser = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), userMoral);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -105,7 +115,7 @@ const RegisterMoral = () => {
           </View>
 
           <TouchableOpacity onPress={() => {
-            console.log(userMoral);
+            registerUser();
             Alert.alert('Datos registrados ✅');
           }} style={s.btnRegisterPhysic}>
             <Text style={s.btnRegisterPhysicText}>Registrar</Text>
